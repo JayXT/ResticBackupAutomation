@@ -10,7 +10,7 @@ The reason for such distinction is because application configuration should be c
 
 The project follows a user-centric approach that is it'll stay minimal, but each user is welcome to analyze and adapt everything to their needs.
 
-In order to start using the solution it's necessary to:
+In order to start using the automation it's necessary to:
 * Ensure you're using GNU/Linux distribution with systemd as init.
 * Copy all files except for .bashrc into the respective directories.
 * Merge contents of .bashrc with the same file in your user directory, i.e. a couple of provided aliases could just be added to your file.
