@@ -18,8 +18,8 @@ In order to start using the automation it's necessary to:
 * Ensure that the following environment variables are defined in your /etc/environment file:
     * RESTIC_PASSWORD_FILE or RESTIC_PASSWORD
     * RESTIC_CACHE_DIR (usually is set to "/var/cache/restic")
-    * B2_ACCOUNT_ID (application key id that has read/write access to your cloud bucket)
-    * B2_ACCOUNT_KEY (application key that has read/write access to your cloud bucket)
+    * B2_ACCOUNT_ID (application key id that has read/write access to your B2 bucket)
+    * B2_ACCOUNT_KEY (application key that has read/write access to your B2 bucket)
 * In case of RESTIC_PASSWORD_FILE environment variable, the file that contains restic repository password has to be created first.
 * Run sudo `systemctl daemon-reload`
 * Run sudo `systemctl enable --now restic-local-backup.timer`
