@@ -1,5 +1,4 @@
 # ResticBackupAutomation
-My simple GNU/Linux systemd-based solution for local and cloud backup using restic.
 
 The goal of the project is to provide a simplistic and reliable automated backups as well as some bash aliases to make manual backups a breeze. In case of this project remote backups are aimed at B2 cloud storage. The main difference between manual and automated backups is that `manual` tag is added to manual backups, unlike automated ones only having `OS` or `Data` tag. Such approach allows for additional control when deciding which backup snapshots to keep and which to remove.
 
