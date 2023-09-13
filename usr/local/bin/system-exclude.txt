@@ -1,0 +1,65 @@
+# Mounted devices, including BACKUP Drive
+/media
+/mnt
+/cdrom
+
+# Temporary folders and files
+/proc
+/sys
+/dev
+/run
+/tmp
+/var/run
+/var/lock
+/var/tmp
+/lost+found
+/swapfile
+
+# restic cache
+/var/cache/restic
+
+# Home data folders
+/home/*/Documents
+/home/*/Downloads
+/home/*/Library
+/home/*/Music
+/home/*/Other
+/home/*/Pictures
+/home/*/Projects
+/home/*/Public
+/home/*/Templates
+/home/*/Videos
+/home/*/Desktop
+
+# Steam Games
+/home/*/.var/app/com.valvesoftware.Steam/data/Steam/steamapps
+
+# Temporary home items
+/home/*/.gvfs
+/home/*/.local/share/flatpak/appstream
+/home/*/.local/share/gvfs-metadata
+/home/*/.local/share/Trash
+/home/*/.cache
+/home/*/.dbus
+/home/*/.xsession-errors
+/home/*/.XAuthority
+/home/*/.gksu.lock
+
+# Docker images
+/home/*/.local/share/docker
+
+# Flatpak cache
+/home/*/.var/**/cache
+
+# Firefox
+/home/*/.mozilla/firefox/*/storage
+/home/*/.mozilla/firefox/*/favicons.sqlite
+
+# Brave Browser
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Local Storage
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Session Storage
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Favicons
+
+# Electron apps
+/home/*/.config/**/Cache
+/home/*/.config/**/GPUCache
