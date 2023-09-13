@@ -4,10 +4,10 @@ My simple GNU/Linux systemd-based solution for local and cloud backup using rest
 The goal of the project is to provide a simplistic and reliable automated backups as well as some bash aliases to make manual backups a breeze. In case of this project remote backups are aimed at B2 cloud storage. The main difference between manual and automated backups is that `manual` tag is added to manual backups, unlike automated ones only having `OS` or `Data` tag. Such approach allows for additional control when deciding which backup snapshots to keep and which to remove.
 
 The key concept of the ResticBackupAutomation is segregation between system data and user data.
-* System data (`OS` tag) includes data starting from system root (`/`), `/home`, except for the specified user data directories (Pictures, Documents, Music, etc.).
+* System data (`OS` tag) includes data starting from system root (`/`), `/home` too, except for the specified home user data directories (Pictures, Documents, Music, etc.).
 * User data (`Data` tag)  is focused on most of data in /home, but doesn't include `/home/*/.*` (any files/directories in user folder that start from `.` and belong to system/application configuration/data).
 
-The reason for such distinction is because application configuration should be considered a part of the OS and not the user files. Restoring the OS backup should restore, not only the system, but also apps to the state and configuration they've been at for each user at the specific moment of time.
+The reason for such distinction is because application configuration should be considered a part of the OS and not the user files. Restoring the OS backup should restore, not only the system, but also apps to the state and configuration they've been at for each user at the specific moment of time. Nevertheless, the majority of directories for mounted devices, temporary data and cache have been excluded from OS backups to preserve extra storage.
 
 The project follows a user-centric approach, which means it'll stay minimal, but each user is welcome to analyze and adapt everything to their needs.
 
