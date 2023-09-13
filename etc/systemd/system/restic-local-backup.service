@@ -1,0 +1,7 @@
+[Unit]
+Description=Restic local backup service
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/local/bin/restic_backup <path to restic repo directory>
+EnvironmentFile=/etc/environment
