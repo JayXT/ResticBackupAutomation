@@ -1,0 +1,26 @@
+#! /bin/bash
+
+if [ $# -eq 0 ]; then
+	>&2 echo "Please provide a path to restic repository."
+    exit 1
+fi
+
+echo "Starting a backup to $1 repository via restic..."
+
+/usr/bin/restic -r $1 --verbose backup --tag OS --exclude-file=/usr/local/bin/system-exclude.txt /
+/usr/bin/restic -r $1 --verbose backup --tag Data --exclude-file=/usr/local/bin/data-exclude.txt /home
+
+/usr/bin/restic -r $1 forget --keep-last 3 --tag manual --group-by tags
+/usr/bin/restic -r $1 forget --keep-last 4 --keep-daily 5 --keep-weekly 4 --keep-monthly 4 --keep-yearly 2 --group-by tags
+
+echo "The restic backup to $1 repository has completed."
+
+if [ `date +%d` == "01" ] 
+then
+	echo "Starting a monthly cleanup of $1 restic repository..."
+
+	/usr/bin/restic -r $1 unlock
+	/usr/bin/restic -r $1 prune
+
+	echo "The monthly cleanup of $1 restic repository has completed."
+fi
