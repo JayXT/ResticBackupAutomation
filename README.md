@@ -19,4 +19,4 @@ In order to start using the solution it's necessary to:
 * Reboot.
 
 
-For more details on how restic works as well as ideas for customization to your needs, please refer to [restic official documentation](https://restic.readthedocs.io/en/stable/).
+For more details on how restic works as well as ideas for customization to your needs, please refer to the [restic official documentation](https://restic.readthedocs.io/en/stable/).
