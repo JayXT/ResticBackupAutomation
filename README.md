@@ -26,6 +26,10 @@ In order to start using the automation it's necessary to:
 * Run sudo `systemctl enable --now restic-cloud-backup.timer`
 * Reboot.
 
+The automated backups will run on a daily basis. `restic-local-backup.timer` will execute `restic-local-backup.service`, while `restic-cloud-backup.timer` will execute `restic-cloud-backup.service`. `restic-cloud-backup.timer` activates when a network is online. In addition `restic-cloud-backup-service` waits for completion of `restic-local-backup.service` to eliminate unnecessary CPU load, spikes and freezes. Each of services calls the `restic_backup` bash script providing path to restic repository as a parameter.
+
+The `restic_backup` script also performs repository pruning to clean up the deleted snapshots and free up disk space. This happens if it's executed on the 1st of month.
+
 Manual backups could be done using `sysbackup` or `databackup` bash aliases. In addition recent snapshots could be accessed with `busnapshots` alias. All three commands first target a local restic repository, then a remote restic repository.
 
 The [restic](https://restic.net/) itself is a minimal one-file command-line utility written in Go that is capable of encrypted, compressed, deduplicated and incremental file backups to various repositories, both local and remote.
