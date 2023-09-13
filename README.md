@@ -26,7 +26,7 @@ In order to start using the solution it's necessary to:
 * Run sudo `systemctl enable --now restic-cloud-backup.timer`
 * Reboot.
 
-Manual backups could be done using `sysbackup` or `databackup` bash aliases. In addition recent snapshots could be accessed with `busnapshots` alias.
+Manual backups could be done using `sysbackup` or `databackup` bash aliases. In addition recent snapshots could be accessed with `busnapshots` alias. All three commands first target a local restic repository, then a remote restic repository.
 
 The [restic](https://restic.net/) itself is a minimal one-file command-line utility written in Go that is capable of encrypted, compressed, deduplicated and incremental file backups to various repositories, both local and remote.
 For more details on how restic works as well as ideas for customization of the backup approach to suit your needs, please refer to the [restic official documentation](https://restic.readthedocs.io/en/stable/).
