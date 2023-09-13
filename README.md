@@ -14,7 +14,7 @@ In order to start using the automation it's necessary to:
 * Ensure you're using GNU/Linux distribution with systemd as init.
 * Copy all files except for .bashrc into the respective directories.
 * Merge contents of .bashrc with the same file in your user directory, i.e. a couple of provided aliases could just be added to your file.
-* Replace all placeholders (<>) in all files with real names/paths.
+* Replace all placeholders (`<>`) in all files with real names/paths.
 * Ensure that the following environment variables are defined in your /etc/environment file:
     * RESTIC_PASSWORD_FILE or RESTIC_PASSWORD
     * RESTIC_CACHE_DIR (usually is set to "/var/cache/restic")
