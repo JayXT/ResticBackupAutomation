@@ -6,7 +6,7 @@ The key concept of the ResticBackupAutomation is segregation between system data
 * System data (`OS` tag) includes data starting from system root (`/`), `/home` too, except for the specified home user data directories (Pictures, Documents, Music, etc.).
 * User data (`Data` tag)  is focused on most of data in /home, but doesn't include `/home/*/.*` (any files/directories in user folder that start from `.` and belong to system/application configuration/data).
 
-The reason for such distinction is because application configuration should be considered a part of the OS and not the user files. Restoring the OS backup should restore, not only the system, but also the apps to the state and configuration they've been at for each user at the specific moment of time. Nevertheless, the majority of directories for mounted devices, temporary data and cache have been excluded from OS backups to preserve extra storage.
+The reason for such distinction is because application configuration should be considered as a part of the OS and not the user files. Restoring the OS backup should restore, not only the system, but also the apps to the state and configuration they've been at for each user at the specific moment of time. Nevertheless, the majority of directories for mounted devices, temporary data and cache have been excluded from OS backups to preserve extra storage.
 
 The project follows a user-centric approach that is it'll stay minimal, but each user is welcome to analyze and adapt everything to their needs.
 
