@@ -1,0 +1,8 @@
+[Unit]
+Description=Restic cloud backup service
+After=restic-local-backup.service
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/local/bin/restic_backup b2:<your bucket>:<path to your restic repo directory>
+EnvironmentFile=/etc/environment
