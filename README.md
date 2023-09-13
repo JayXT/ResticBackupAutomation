@@ -9,7 +9,7 @@ The key concept of the ResticBackupAutomation is segregation between system data
 
 The reason for such distinction is because application configuration should be considered a part of the OS and not the user files. Restoring the OS backup should restore, not only the system, but also the apps to the state and configuration they've been at for each user at the specific moment of time. Nevertheless, the majority of directories for mounted devices, temporary data and cache have been excluded from OS backups to preserve extra storage.
 
-The project follows a user-centric approach, which means it'll stay minimal, but each user is welcome to analyze and adapt everything to their needs.
+The project follows a user-centric approach that is it'll stay minimal, but each user is welcome to analyze and adapt everything to their needs.
 
 In order to start using the solution it's necessary to:
 * Copy all files except for .bashrc into the respective directories.
