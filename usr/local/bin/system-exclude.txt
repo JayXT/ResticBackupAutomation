@@ -56,9 +56,9 @@
 /home/*/.mozilla/firefox/*/favicons.sqlite
 
 # Brave Browser
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Local Storage
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Session Storage
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Favicons
+/home/*/.config/BraveSoftware/Brave-Browser/*/Local Storage
+/home/*/.config/BraveSoftware/Brave-Browser/*/Session Storage
+/home/*/.config/BraveSoftware/Brave-Browser/*/Favicons
 
 # Electron apps
 /home/*/.config/**/Cache
