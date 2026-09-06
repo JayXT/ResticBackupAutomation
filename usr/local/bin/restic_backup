@@ -1,26 +1,38 @@
-#! /bin/bash
+#!/bin/bash
+set -u
 
-if [ $# -eq 0 ]; then
-	>&2 echo "Please provide a path to restic repository."
-    exit 1
+REPO=${1:?Please provide a path to restic repository.}
+RESTIC=/usr/bin/restic
+
+[ "$(id -u)" -eq 0 ] || { echo "Run as root: backing up / needs it." >&2; exit 1; }
+
+# 0 is success, 3 means the snapshot exists but some files could not be read.
+# Anything else means no new snapshot, and retention must not run.
+made_snapshot() { [ "$1" -eq 0 ] || [ "$1" -eq 3 ]; }
+
+echo "Starting a backup to $REPO repository via restic..."
+
+"$RESTIC" -r "$REPO" --verbose backup --tag PC --tag OS \
+    --exclude "$REPO" --exclude-file=/usr/local/bin/system-exclude.txt /
+system=$?
+
+"$RESTIC" -r "$REPO" --verbose backup --tag PC --tag Data \
+    --exclude "$REPO" --exclude-file=/usr/local/bin/data-exclude.txt /home
+data=$?
+
+if made_snapshot "$system" && made_snapshot "$data"; then
+    "$RESTIC" -r "$REPO" forget --group-by tags --tag PC,manual \
+        --keep-last 3
+    "$RESTIC" -r "$REPO" forget --group-by tags --tag PC --keep-tag manual \
+        --keep-last 4 --keep-daily 5 --keep-weekly 4 --keep-monthly 4 --keep-yearly 2
+    echo "The restic backup to $REPO repository has completed."
+else
+    echo "A backup failed (system=$system, data=$data); retention skipped." >&2
 fi
 
-echo "Starting a backup to $1 repository via restic..."
-
-/usr/bin/restic -r $1 --verbose backup --tag OS --exclude-file=/usr/local/bin/system-exclude.txt /
-/usr/bin/restic -r $1 --verbose backup --tag Data --exclude-file=/usr/local/bin/data-exclude.txt /home
-
-/usr/bin/restic -r $1 forget --keep-last 3 --tag manual --group-by tags
-/usr/bin/restic -r $1 forget --keep-last 4 --keep-daily 5 --keep-weekly 4 --keep-monthly 4 --keep-yearly 2 --group-by tags
-
-echo "The restic backup to $1 repository has completed."
-
-if [ `date +%d` == "01" ] 
-then
-	echo "Starting a monthly cleanup of $1 restic repository..."
-
-	/usr/bin/restic -r $1 unlock
-	/usr/bin/restic -r $1 prune
-
-	echo "The monthly cleanup of $1 restic repository has completed."
+if [ "$(date +%d)" = "01" ]; then
+    echo "Starting a monthly cleanup of $REPO restic repository..."
+    "$RESTIC" -r "$REPO" unlock
+    "$RESTIC" -r "$REPO" prune
+    echo "The monthly cleanup of $REPO restic repository has completed."
 fi
